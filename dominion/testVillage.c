@@ -27,7 +27,10 @@ int main(int argc, char** argv) {
 
 	/* Since the cardEffect function returns 0 when it's successful, we assign
 	the returned number to a variable.*/
-	returnedResult = cardEffect(village, choice1, choice2, choice3, &G, NULL);
+	//returnedResult = cardEffect(village, choice1, choice2, choice3, &G, NULL);	// Village Card cardEffect test.
+	//printf("Returned Result %d\n", returnedResult);
+	returnedResult = playVillage(NULL, 1, &G);	// Refactored Village card test.
+	printf("Returned Result %d\n", returnedResult);	// Debugging.
 
 	/* Check number of actions after card has been played. */
 	assert(G.numActions == actions + 2);
