@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 	actions = G.numActions;
 
 	deckCount = G.handCount[1];	//Get current player's hand count
-	printf("Deck Count: %d\n", deckCount);
+	printf("Deck count prior to playing Smithy: %d\n", deckCount);
 
 	/* Since the cardEffect function returns 0 when it's successful, we assign
 	the returned number to a variable.*/
@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 	}
 
 	deckCounter = G.deckCount[1];	//Create a holder for the deck count
-	printf("Deck Count: %d\n", deckCount);
+	printf("Deck count after playing Smithy: %d\n", deckCount);
 
 	if (deckCounter == 0)
 		return -1;
