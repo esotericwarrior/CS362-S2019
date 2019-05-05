@@ -17,6 +17,8 @@ int main() {
 		int failed_hand_test = 0;
 		int failed_deck_test = 0;
 		int failed_discard_test = 0;
+		int actions_test = 0;
+		int score_test = 0;
 		struct gameState G;
 		int choice1 = 0, choice2 = 0, choice3 = 0;
 		actionsBefore = 0;
@@ -39,24 +41,103 @@ int main() {
 		actionsBefore = G.numActions;
 		printf("Number of actions before playing Great Hall = %d\n", G.numActions);
 
+		/* Get player one's hand count. */
+		hand_before = G.handCount[whoseTurn];
+		printf("Hand count for player 1 prior to playing Great Hall: %d\n", hand_before);
+		
+		/* Player one's deck count before playing Great Hall. */
+		deck_before = G.deckCount[whoseTurn];
+		printf("Deck count for Player 1 prior to playing Great Hall: %d\n", deck_before);
+		
+		/* Discard pile before playing Great Hall. */
+		discard_pile_before = G.playedCardCount;
+		printf("Player 1's discard pile prior to playing Great Hall: %d\n", discard_pile_before);
+
+		/* Set score before playing Great Hall. */
+		int score = 0;
+		printf("Score before playing Great Hall = %d\n", score);
+
 		printf("\nPlaying Great Hall...\n\n");
 		//returnedResult = cardEffect(great_hall, choice1, choice2, choice3, &G, NULL);	// Great Hall Card cardEffect test.
 		returnedResult = playGreat_Hall(handPos, whoseTurn, &G);
 		
-		/* Check returned value from playGreatHall function. */
+		/* Verify Great Hall was properly played. */
 		assert(returnedResult == 0);
-		printf("Returned Result %d\n", returnedResult);
+		//printf("Returned Result %d\n", returnedResult);	// Debugging.
 
-		//actions = G.numActions;
-		printf("Number of actions after playing Great Hall = %d\n", G.numActions);
-		//printf("Actions after playing Great Hall = %d\n", actions);
+		/* Now we check everything now that Great Hall has been played. */
+
+		/* First, get player one's hand count after playing Great Hall. */
+		hand_after = G.handCount[whoseTurn];
+		printf("Hand count after playing Great Hall: %d\n", hand_after);
+		/* Get player one's deck count after playing Great Hall. */
+		deck_after = G.deckCount[whoseTurn];
+		printf("Deck count after playing Great Hall: %d\n", deck_after);
+		/* And finally, count discarded cards after playing Great Hall. */
+		discard_pile_after = G.playedCardCount;
+		printf("Player 1's discard pile after playing Great Hall: %d\n", G.playedCardCount);
+		
+		int passedTest = 1;	// Boolean variable for passing or failing a test. True by default.
+
+		/* Check number of actions after playing Great Hall. */
+		actionsAfter = G.numActions;
+		printf("Number of actions after playing Great Hall = %d\n", actionsAfter);
+
+		/* Check Victory Points after playing Great Hall. */
+		int scoreAfter = scoreFor(whoseTurn, &G);
+		printf("Score after Great Hall = %d\n", scoreAfter);
+		
 		/* Check number of actions after card has been played. */
 		//assert(G.numActions == actions + 1);
-	
-		/* Check number of cards drawn. */
 
-		/* Check Victory Points. */
+		/*------------------------------ Test Results ------------------------------*/
+		/* Having played Great Hall, we check player one's hand before and after. */
+		if (hand_after != hand_before) {
+			printf("Incorrect number of cards drawn.\n");
+			/* Increment number of failed tests. */
+			failed_hand_test++;
+			/* Set test boolean to false. */
+			passedTest = 0;
+		}
+		/* Check number of cards in the deck after Great Hall is played. */
+		if (deck_after != (deck_before - 1)) {
+			printf("Incorrect number of cards in deck.\n");
+			/* Increment number of failed tests. */
+			failed_deck_test++;
+			/* Set test boolean to false. */
+			passedTest = 0;
+		}
+		if (discard_pile_after != (discard_pile_before + 1)) {
+			printf("Incorrect number of cards in discard pile.\n");
+			/* Increment number of failed tests. */
+			failed_discard_test++;
+			/* Set test boolean to false. */
+			passedTest = 0;
+		}
 
+		if (actionsAfter != (actionsBefore + 1)) {
+			printf("Incorrect number of actions given.\n");
+			actions_test++;
+			passedTest = 0;
+		}
 
+		if (scoreAfter != (score + 1)) {
+			printf("Incorrect number of Victory Points awarded.\n");
+			score_test++;
+			passedTest = 0;
+		}
+
+		/* If all tests are passed, increment number of passed tests. */
+		if (passedTest == 1) {
+			printf("All tests passed!\n");
+			/* Increment total number of passed tests. */
+			totalPassedTest++;
+		}
+
+		/*------------------------------ Report Results ------------------------------*/
+		printf("\nTotal number of times all tests passed: %d\n", totalPassedTest);
+		printf("Total number of times cards drawn to hand failed: %d\n", failed_hand_test);
+		printf("Total number of times cards placed into deck failed: %d\n", failed_deck_test);
+		printf("Total number of times Great Hall discarded incorrectly: %d\n", failed_discard_test);
 	return 0;
 }
