@@ -31,6 +31,9 @@ int main() {
 		int k[10] = { adventurer, council_room, feast, gardens, mine
 			, remodel, smithy, village, baron, great_hall };
 		
+		/* Seed random number generator. */
+		srand(time(NULL));
+
 		/* Clear the game state. */
 		memset(&G, 23, sizeof(struct gameState));
 		
@@ -40,6 +43,20 @@ int main() {
 		/* Set default number of actions. */
 		actionsBefore = G.numActions;
 		printf("Number of actions before playing Great Hall = %d\n", G.numActions);
+
+		/* Randomize deck size. */
+		deckSize = rand() % (MAX_DECK + 1);
+		printf("Randomized deck size = %d\n", deckSize);
+		/* Randomize hand size. */
+		handSize = rand() % (deckSize + 1);
+		printf("Randomized hand size = %d\n", handSize);
+		
+		/* Calculate player one's hand size. */
+		G.deckCount[0] = deckSize - handSize;
+		
+		/* Set player one's hand size. */
+		G.handCount[0] = handSize;
+
 
 		/* Get player one's hand count. */
 		hand_before = G.handCount[whoseTurn];
@@ -138,6 +155,6 @@ int main() {
 		printf("\nTotal number of times all tests passed: %d\n", totalPassedTest);
 		printf("Total number of times cards drawn to hand failed: %d\n", failed_hand_test);
 		printf("Total number of times cards placed into deck failed: %d\n", failed_deck_test);
-		printf("Total number of times Great Hall discarded incorrectly: %d\n", failed_discard_test);
+		printf("Total number of times Great Hall discarded incorrectly: %d\n\n", failed_discard_test);
 	return 0;
 }
