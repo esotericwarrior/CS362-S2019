@@ -25,7 +25,6 @@ int main() {
 		actionsAfter = 0;
 		vpBefore = 0;
 		vpAfter = 0;
-		handPos = 0;
 		int whoseTurn = 0;
 
 		int k[10] = { adventurer, council_room, feast, gardens, mine
@@ -43,6 +42,9 @@ int main() {
 		/* Set default number of actions. */
 		actionsBefore = G.numActions;
 		printf("Number of actions before playing Great Hall = %d\n", G.numActions);
+
+		/* Reset hand position. */
+		handPos = 0;
 
 		/* Randomize deck size. */
 		deckSize = rand() % (MAX_DECK + 1);
@@ -124,6 +126,8 @@ int main() {
 			/* Set test boolean to false. */
 			passedTest = 0;
 		}
+
+		/* Check number of cards in the discard pile after Great Hall is played. */
 		if (discard_pile_after != (discard_pile_before + 1)) {
 			printf("Incorrect number of cards in discard pile.\n");
 			/* Increment number of failed tests. */
@@ -132,14 +136,18 @@ int main() {
 			passedTest = 0;
 		}
 
+		/* Check the number of actions after Great Hall is played. */
 		if (actionsAfter != (actionsBefore + 1)) {
 			printf("Incorrect number of actions given.\n");
+			/* Increment number of failed tests.*/
 			actions_test++;
 			passedTest = 0;
 		}
 
+		/* Check the score after Great Hall is played. */
 		if (scoreAfter != (score + 1)) {
 			printf("Incorrect number of Victory Points awarded.\n");
+			/* Incrememnt number of failed tests. */
 			score_test++;
 			passedTest = 0;
 		}
