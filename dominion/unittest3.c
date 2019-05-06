@@ -4,6 +4,7 @@
 * Description: unittest3.c tests manually adding
 * copper, silver, and gold to a player's hand.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

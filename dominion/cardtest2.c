@@ -4,6 +4,7 @@
 * Description: cardtest2.c tests the Smithy
 * card.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

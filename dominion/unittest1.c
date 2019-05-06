@@ -4,6 +4,7 @@
 * Description: unittest1.c tests the gameOver()
 * function.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

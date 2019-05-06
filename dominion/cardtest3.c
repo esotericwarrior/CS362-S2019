@@ -4,6 +4,7 @@
 * Description: cardtest3.c tests the Adventurer
 * card.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

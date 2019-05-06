@@ -4,6 +4,7 @@
 * Description: unittest4.c tests the getCost()
 * function for 10 cards.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

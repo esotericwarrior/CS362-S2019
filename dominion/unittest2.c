@@ -4,6 +4,7 @@
 * Description: unittest2.c tests the player's
 * coin total after playing Cutpurse.
 **********************************************/
+#include <string.h> /* memset */
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

@@ -9,6 +9,7 @@
 #include "dominion.h"
 #include "rngs.h"
 #include "assert.h"
+#include <string.h> /* memset */
 
 /* Village (Action): Cost = 3, +1 Card, +2 Actions */
 
