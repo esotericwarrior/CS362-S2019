@@ -1,3 +1,9 @@
+/***********************************************
+* Name: Tristan Santiago
+* Date: May 5, 2019
+* Description: unittest4.c tests the getCost()
+* function for 10 cards.
+**********************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"
