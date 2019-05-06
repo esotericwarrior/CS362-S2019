@@ -1,3 +1,9 @@
+/***********************************************
+* Name: Tristan Santiago
+* Date: May 5, 2019
+* Description: unittest1.c tests the gameOver()
+* function.
+**********************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"

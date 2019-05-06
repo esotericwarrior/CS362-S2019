@@ -1,3 +1,9 @@
+/***********************************************
+* Name: Tristan Santiago
+* Date: May 5, 2019
+* Description: cardtest3.c tests the Adventurer
+* card.
+**********************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"
@@ -47,18 +53,11 @@ int main(int argc, char** argv) {
 	G.handCount[G.whoseTurn] = 0;
 	handPos = 0;
 
-	/* Test ideas from Piazza post. */
-
-	/* Test #1: The top two cards of the deck are treasures. */
-
 	/* Set player one's hand. */
 	G.hand[whoseTurn][0] = adventurer;
-	//G.handCount[whoseTurn] = 1;	// Adventurer is in the player's hand.
-	G.hand[whoseTurn][1] = estate;
-	G.hand[whoseTurn][2] = estate;
-	G.hand[whoseTurn][3] = estate;
-	G.hand[whoseTurn][4] = estate;
-
+	G.discard[whoseTurn][0] = copper;
+	G.discard[whoseTurn][1] = curse;
+	G.discard[whoseTurn][2] = estate;
 
 	/* Set player one's deck to have two treasures on top. */
 	G.deck[whoseTurn][0] = copper;
@@ -68,19 +67,19 @@ int main(int argc, char** argv) {
 	G.deck[whoseTurn][4] = silver;
 
 	/* Cards in hand before playing Adventurer. */
-	printf("Cards in hand before playing Adventurer.\n");
-	for (i = 0; i < G.deck[whoseTurn][4]; i++) {
-	//for (i = 0; i < 5; i++) {
-		if (G.deck[whoseTurn][i] == copper) {	// If == 4
-			printf("Card #%d: Copper\n", (i + 1));	// Copper
-		}
-		if (G.deck[whoseTurn][i] == silver) {	// If == 5
-			printf("Card #%d: Silver\n", (i + 1));	// Silver
-		}
-		if (G.deck[whoseTurn][i] == gold) {	// If == 6
-			printf("Card #%d: Gold\n", (i + 1));	// Gold
-		}
-	}
+	//printf("Cards in Player 1's hand before playing Adventurer.\n");
+	//for (i = 0; i < G.hand[whoseTurn][4]; i++) {
+	//	//for (i = 0; i < 5; i++) {
+	//	if (G.deck[whoseTurn][i] == copper) {	// If == 4
+	//		printf("Card #%d: Copper\n", (i + 1));	// Copper
+	//	}
+	//	if (G.deck[whoseTurn][i] == silver) {	// If == 5
+	//		printf("Card #%d: Silver\n", (i + 1));	// Silver
+	//	}
+	//	if (G.deck[whoseTurn][i] == gold) {	// If == 6
+	//		printf("Card #%d: Gold\n", (i + 1));	// Gold
+	//	}
+	//}
 
 	/* Get player one's hand count. */
 	int hand_before = G.handCount[whoseTurn];

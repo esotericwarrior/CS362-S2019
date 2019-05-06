@@ -1,3 +1,9 @@
+/***********************************************
+* Name: Tristan Santiago
+* Date: May 5, 2019
+* Description: cardtest2.c tests the Smithy
+* card.
+**********************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"
