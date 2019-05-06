@@ -1,3 +1,9 @@
+/***********************************************
+* Name: Tristan Santiago
+* Date: May 5, 2019
+* Description: cardtest1.c tests the Village
+* card.
+**********************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"
@@ -39,5 +45,5 @@ int main(int argc, char** argv) {
 
 	printf("All tests passed!\n");
 	return 0;
-
-}
+//
+//}
