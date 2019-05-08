@@ -1,20 +1,40 @@
+/**********************************************************
+* Name: Tristan Santiago
+* Date: May 8, 2019
+* Description: This program implements a random tester to
+* generate the error message with the specified coverage.
+***********************************************************/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 #include<time.h>
-
+/**********************************************************
+* Function: char inputChar()
+* Parameters: No parameters.
+* Description: This function generates a random character
+* within the specified ASCII range and returns in.
+***********************************************************/
 char inputChar() {
-	char random = (rand() % 94) + 32;	// ASCII #32 - 125.
-    return random;
+	char random = (rand() % 94) + 32;	// #32 - 125.
+    return random;	// Return randomly generated character.
 }
-
+/**********************************************************
+* Function: char* inputString()
+* Parameters: No parameters.
+* Description: This function is responsible for populating
+* the random string using a randomly generated character.
+***********************************************************/
 char *inputString() {
 	int i = 0;
+	/* Define array to store the random string. */
 	static char randomString[6];
-	char targetString[] = "[({ax})]reset";
+	/* Define a string that contains the target characters. */
+	char targetString[] = "reset";
+	/* Clear the random string before populating. */
 	memset(randomString, '\0', sizeof(randomString));
 	while (i < 5) { 
-		randomString[i] = targetString[rand() % 13];
+		/* Populate the string using random characters. */
+		randomString[i] = targetString[rand() % 5];
 		i++;
 	}
     return randomString;
@@ -49,7 +69,6 @@ void testme() {
 		}
 	}
 }
-
 
 int main(int argc, char *argv[]) {
 	srand(time(NULL));
