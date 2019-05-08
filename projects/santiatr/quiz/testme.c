@@ -4,13 +4,20 @@
 #include<time.h>
 
 char inputChar() {
-	char random = (rand() % 94) + 32;
+	char random = (rand() % 94) + 32;	// ASCII #32 - 125.
     return random;
 }
 
 char *inputString() {
-    // TODO: rewrite this function
-    return "";
+	int i = 0;
+	static char randomString[6];
+	char targetString[] = "[({ax})]reset";
+	memset(randomString, '\0', sizeof(randomString));
+	while (i < 5) { 
+		randomString[i] = targetString[rand() % 13];
+		i++;
+	}
+    return randomString;
 }
 
 void testme() {
