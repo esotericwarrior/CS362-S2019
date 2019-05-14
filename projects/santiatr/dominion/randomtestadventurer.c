@@ -1,8 +1,8 @@
 /***********************************************
 * Name: Tristan Santiago
 * Date: May 13, 2019
-* Description: randomtestadventurer.c tests the Smithy
-* card.
+* Description: randomtestadventurer.c tests the
+* Adventurer card.
 **********************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -15,7 +15,6 @@
 
 int main(int argc, char** argv) {
 	int seed = 1000;
-	//int numPlayers = 2;	// Number of players.
 	int numTests = 1;	// Number of tests to run.
 	int currentPlayer = 0;	// Set current player to player 1.
 	int totalPassedTest = 0; // Variable used to track number of successful tests.
@@ -32,7 +31,6 @@ int main(int argc, char** argv) {
 	int failed_discard_test = 0;
 	struct gameState G;
 	int choice1 = 0, choice2 = 0, choice3 = 0;
-	//int copper_before, copper_after, silver_before, silver_after, gold_before, gold_after;
 	int copperCount = 0;
 	int silverCount = 0;
 	int goldCount = 0;
@@ -93,9 +91,6 @@ int main(int argc, char** argv) {
 		
 		int n;
 		for (n = 0; n < G.handCount[currentPlayer]; n++) {
-			//if (G.hand[currentPlayer][n] == copper || G.hand[currentPlayer][n] == silver || G.hand[currentPlayer][n] == gold) {
-			//	coins_before++;
-			//}
 			if (G.hand[currentPlayer][n] == copper) {
 				copperCount++;
 				coins_before++;
