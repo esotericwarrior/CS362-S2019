@@ -123,7 +123,6 @@ int main(int argc, char** argv) {
 			/* Set test boolean to false. */
 			passedTest = 0;
 		}
-		/* No "else" statement used because it can be 4 cards drawn and showing correct. */
 
 		/* Check number of cards in the deck after Council Room is played. */
 		if (deck_after != (deck_before - 4)) {
