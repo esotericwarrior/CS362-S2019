@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
 	int failed_deck_test = 0;
 	int failed_discard_test = 0;
 	int failed_buy_test = 0;
+	int p2_hand_test = 0;
 	struct gameState G;
 	int choice1 = 0, choice2 = 0, choice3 = 0;
 
@@ -96,18 +97,22 @@ int main(int argc, char** argv) {
 		printf("Player 1's number of buys after playing Council Room: %d\n", buys_after);
 
 		/* Verify that Council Room was successfully played. */
-		//assert(returnedResult == 0);
+		assert(returnedResult == 0);
 		//printf("Returned Result %d\n", returnedResult);	// Debugging.
 		
 		/* Now we check everything now that Council Room has been played. */
 		/* First, get player one's hand count after playing Council Room. */
 		hand_after = G.handCount[0];
 		printf("Hand count after playing Council Room: %d\n", hand_after);
-		printf("HAND count after playing Council Room: %d\n", G.handCount[0]);
-		printf("P2 hand count %d\n", G.handCount[1]);
+		
+		/* Get Player 2's hand count after played Council Room. */
+		int p2_hand_after = G.handCount[1];
+		printf("Player 2's hand count after playing Council Room: %d\n", G.handCount[1]);
+		
 		/* Get player one's deck count after playing Council Room. */
 		deck_after = G.deckCount[0];
 		printf("Deck count after playing Council Room: %d\n", deck_after);
+		
 		/* And finally, count discarded cards after playing Council Room. */
 		discard_pile_after = G.playedCardCount;
 		printf("Player 1's discard pile after playing Council Room: %d\n", G.playedCardCount);
@@ -121,6 +126,14 @@ int main(int argc, char** argv) {
 			/* Increment number of failed tests. */
 			failed_hand_test++;
 			/* Set test boolean to false. */
+			passedTest = 0;
+		}
+
+		/* Check Player 2's hand count after Council Room is played. */
+		/*assert(p2_hand_after == (p2_hand_before + 1));*/
+		if (p2_hand_after != p2_hand_before + 1) {
+			printf("Incorrect number of cards in Player 2's hand.\n");
+			p2_hand_test++;
 			passedTest = 0;
 		}
 
@@ -151,6 +164,7 @@ int main(int argc, char** argv) {
 	printf("\nTotal number of times all tests passed: %d\n", totalPassedTest);
 	printf("Total number of times cards drawn to hand failed: %d\n", failed_hand_test);
 	printf("Total number of times cards placed into deck failed: %d\n", failed_deck_test);
+	printf("Total number of times Player 2 draw failed: %d\n", p2_hand_test);
 
 	return 0;
 
