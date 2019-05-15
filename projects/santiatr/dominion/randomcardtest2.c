@@ -20,8 +20,8 @@ int main(int argc, char** argv) {
 	int numTests = 1000;	// Number of tests to run.
 	int currentPlayer = 0;	// Set current player to player 1.
 	int totalPassedTest = 0; // Variable used to track number of successful tests.
-	int i, r, returnedResult, actions, handPos, handSize, deckSize, deckCount, deckCounter;
-	int handCount, deck_before, hand_before, deck_after, hand_after, discard_pile_before, discard_pile_after;
+	int i, r, returnedResult, handPos, handSize, deckSize;
+	int deck_before, hand_before, deck_after, hand_after, discard_pile_before, discard_pile_after;
 	int failed_hand_test = 0;
 	int failed_deck_test = 0;
 	int failed_discard_test = 0;
@@ -134,14 +134,6 @@ int main(int argc, char** argv) {
 			passedTest = 0;
 		}
 
-		if (discard_pile_after != (discard_pile_before + 1)) {
-			printf("Incorrect number of cards in discard pile.\n");
-			/* Increment number of failed tests. */
-			failed_discard_test++;
-			/* Set test boolean to false. */
-			passedTest = 0;
-		}
-
 		if (buys_after != buys_before + 1) {
 			printf("Incorrect number of buys assigned.\n");
 			failed_buy_test++;
@@ -160,7 +152,6 @@ int main(int argc, char** argv) {
 	printf("\nTotal number of times all tests passed: %d\n", totalPassedTest);
 	printf("Total number of times cards drawn to hand failed: %d\n", failed_hand_test);
 	printf("Total number of times cards placed into deck failed: %d\n", failed_deck_test);
-	printf("Total number of times Council Room discarded incorrectly: %d\n", failed_discard_test);
 
 	return 0;
 
