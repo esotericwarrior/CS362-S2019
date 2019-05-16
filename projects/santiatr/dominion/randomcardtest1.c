@@ -15,11 +15,9 @@
 
 int main(int argc, char** argv) {
 	int seed = 1000;
-	int numPlayer = 2;
 	int numTests = 100;
-	int i, j, l, r, returnedResult, actions;
+	int i, j, l, returnedResult, actions;
 	struct gameState G;
-	int choice1 = 0, choice2 = 0, choice3 = 0;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine
 		, remodel, smithy, village, baron, great_hall };
@@ -32,7 +30,7 @@ int main(int argc, char** argv) {
 		int currentPlayer = rand() % numPlayers + 1;
 
 		/*Initialize a new game. */
-		r = initializeGame(numPlayers, k, seed, &G);
+		initializeGame(numPlayers, k, seed, &G);
 
 		/* Set default number of actions. */
 		actions = G.numActions;

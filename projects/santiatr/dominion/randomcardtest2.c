@@ -18,18 +18,15 @@ int main(int argc, char** argv) {
 	int seed = 1000;
 	int numPlayer = 2;	// Number of players.
 	int numTests = 20000;	// Number of tests to run.
-	int currentPlayer = 0;	// Set current player to player 1.
 	int totalPassedTest = 0; // Variable used to track number of successful tests.
-	int i, r, returnedResult, handPos, handSize, deckSize;
+	int i, returnedResult, handPos, handSize, deckSize;
 	int deck_before, hand_before, deck_after, hand_after, discard_pile_before, discard_pile_after;
 	int failed_hand_test = 0;
 	int failed_deck_test = 0;
-	int failed_discard_test = 0;
 	int failed_buy_test = 0;
 	int success_buy_test = 0;
 	int p2_hand_test = 0;
 	struct gameState G;
-	int choice1 = 0, choice2 = 0, choice3 = 0;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine
 		, remodel, smithy, village, baron, great_hall };
@@ -45,7 +42,7 @@ int main(int argc, char** argv) {
 		memset(&G, 23, sizeof(struct gameState));
 
 		/* Initialize a new game. */
-		r = initializeGame(numPlayer, k, seed, &G);
+		initializeGame(numPlayer, k, seed, &G);
 
 		/* Randomize deck size. */
 		deckSize = rand() % (MAX_DECK + 1);
@@ -86,13 +83,12 @@ int main(int argc, char** argv) {
 		printf("Player 2's hand count prior to playing Council Room: %d\n", p2_hand_before);
 
 		/* Get Player 2's deck count before playing Council Room. */
-		int p2_deck_before = G.deckCount[1];
-
+		// int p2_deck_before = G.deckCount[1];
 
 		/* Since the cardEffect function returns 0 when it's successful, we assign the returned number to a variable.*/
 		//returnedResult = cardEffect(smithy, choice1, choice2, choice3, &G, NULL);
 		printf("Playing Council Room...\n");
-		returnedResult = cardEffect(council_room, 1, 1, 1, &G, handPos);	// Play Council Room card.
+		returnedResult = cardEffect(council_room, 1, 1, 1, &G, handPos, 0);	// Play Council Room card.
 
 		int buys_after = G.numBuys;
 		printf("Player 1's number of buys after playing Council Room: %d\n", buys_after);
@@ -116,7 +112,8 @@ int main(int argc, char** argv) {
 		
 		/* And finally, count discarded cards after playing Council Room. */
 		discard_pile_after = G.playedCardCount;
-		printf("Player 1's discard pile after playing Council Room: %d\n", G.playedCardCount);
+		// printf("Player 1's discard pile after playing Council Room: %d\n", G.playedCardCount);
+		printf("Player 1's discard pile after playing Council Room: %d\n", discard_pile_after);
 
 		int passedTest = 1;	// Boolean variable for passing or failing a test. True by default.
 
