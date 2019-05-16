@@ -17,7 +17,7 @@
 int main(int argc, char** argv) {
 	int seed = 1000;
 	int numPlayer = 2;	// Number of players.
-	int numTests = 1000;	// Number of tests to run.
+	int numTests = 20000;	// Number of tests to run.
 	int currentPlayer = 0;	// Set current player to player 1.
 	int totalPassedTest = 0; // Variable used to track number of successful tests.
 	int i, r, returnedResult, handPos, handSize, deckSize;
@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
 	int failed_deck_test = 0;
 	int failed_discard_test = 0;
 	int failed_buy_test = 0;
+	int success_buy_test = 0;
 	int p2_hand_test = 0;
 	struct gameState G;
 	int choice1 = 0, choice2 = 0, choice3 = 0;
@@ -146,8 +147,13 @@ int main(int argc, char** argv) {
 			passedTest = 0;
 		}
 
-		if (buys_after != buys_before + 1) {
+		if (buys_after == buys_before + 1) {
 			printf("Incorrect number of buys assigned.\n");
+			//failed_buy_test++;
+			success_buy_test++;
+			//passedTest = 1;
+		}
+		else {
 			failed_buy_test++;
 			passedTest = 0;
 		}
@@ -158,10 +164,13 @@ int main(int argc, char** argv) {
 			/* Increment total number of passed tests. */
 			totalPassedTest++;
 		}
+
+		//assert(buys_after == (buys_before + 1));
 	}
 
 	/*------------------------------ Report Results ------------------------------*/
 	printf("\nTotal number of times all tests passed: %d\n", totalPassedTest);
+	printf("Total number of times buy was correctly incremented: %d\n", success_buy_test);
 	printf("Total number of times cards drawn to hand failed: %d\n", failed_hand_test);
 	printf("Total number of times cards placed into deck failed: %d\n", failed_deck_test);
 	printf("Total number of times Player 2 draw failed: %d\n", p2_hand_test);
