@@ -75,8 +75,9 @@ int main(int argc, char** argv) {
 		/* Since the cardEffect function returns 0 when it's successful, we assign the returned number to a variable.*/
 		//returnedResult = cardEffect(smithy, choice1, choice2, choice3, &G, NULL);
 		printf("Playing Smithy...\n");
-		returnedResult = playSmithy(handPos, 0, &G);	// Play Smithy card.
-		
+		//returnedResult = playSmithy(handPos, 0, &G);	// Play Smithy card.
+		returnedResult = smithyCard(currentPlayer, &G, handPos);	// Alexis' refactored Smithy card code.
+
 		/* Verify that Smithy was successfully played. */
 		//assert(returnedResult == 0);
 		//printf("Returned Result %d\n", returnedResult);	// Debugging.
@@ -96,7 +97,7 @@ int main(int argc, char** argv) {
 
 		/*------------------------------ Test Results ------------------------------*/
 		/* Having played Smithy, we check player one's hand before and after. */
-		if (hand_after != (hand_before + 3)) {
+		if (hand_after != (hand_before + 2)) {
 			printf("Incorrect number of cards drawn.\n");
 			/* Increment number of failed tests. */
 			failed_hand_test++;
