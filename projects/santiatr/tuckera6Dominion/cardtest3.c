@@ -68,7 +68,6 @@ int main(int argc, char** argv) {
 	G.deck[whoseTurn][4] = silver;
 
 	/* Cards in hand before playing Adventurer. */
-	//printf("Cards in Player 1's hand before playing Adventurer.\n");
 	//for (i = 0; i < G.hand[whoseTurn][4]; i++) {
 	//	//for (i = 0; i < 5; i++) {
 	//	if (G.deck[whoseTurn][i] == copper) {	// If == 4
@@ -82,6 +81,19 @@ int main(int argc, char** argv) {
 	//	}
 	//}
 
+	printf("Cards in Player 1's deck before playing Adventurer:\n");
+	for (i = 0; i < G.deckCount[whoseTurn]; i++) {
+		if (G.deck[whoseTurn][i] == copper) {	// If == 4
+			printf("Card #%d: Copper\n", (i + 1));	// Copper
+		}
+			if (G.deck[whoseTurn][i] == silver) {	// If == 5
+				printf("Card #%d: Silver\n", (i + 1));	// Silver
+			}
+			if (G.deck[whoseTurn][i] == gold) {	// If == 6
+				printf("Card #%d: Gold\n", (i + 1));	// Gold
+			}
+	}
+
 	/* Get player one's hand count. */
 	int hand_before = G.handCount[whoseTurn];
 	printf("Hand count for player 1 prior to playing Adventurer: %d\n", hand_before);
@@ -90,14 +102,22 @@ int main(int argc, char** argv) {
 	int deck_before = G.deckCount[whoseTurn];
 	printf("Deck count for Player 1 prior to playing Adventurer: %d\n", deck_before);
 
-	/* Discard pile before playing Smithy. */
+	/* Discard pile before playing Adventurer. */
 	int discard_pile_before = G.playedCardCount;
 	printf("Player 1's discard pile prior to playing Adventurer: %d\n", discard_pile_before);
 
+	//printf("cardDrawn value before playing Adventurer: %d\n", cardDrawn);
+	printf("drawnTreasure value before playing Adventurer: %d\n", drawntreasure);
+
 	/* Play Adventurer. */
 	printf("\nPlaying Adventurer...\n\n");
-	returnedResult = playAdventurer(temphand, z, drawntreasure, cardDrawn, currentPlayer, &G);
-	
+
+	//returnedResult = playAdventurer(temphand, z, drawntreasure, cardDrawn, currentPlayer, &G);	// My refactored Adventurer function.
+	returnedResult = adventurerCard(&drawntreasure, &G, &cardDrawn, temphand, currentPlayer);	// Alexis' refactored Adventurer function.
+
+	//printf("cardDrawn value after playing Adventurer: %d\n", cardDrawn);
+	printf("drawnTreasure value after playing Adventurer: %d\n", drawntreasure);
+
 	/* Verify that Adventurer was played. */
 	assert(returnedResult == 0);
 	
@@ -109,8 +129,6 @@ int main(int argc, char** argv) {
 	int hand_after = G.handCount[whoseTurn];
 	printf("Hand count after playing Adventurer: %d\n", hand_after);
 
-
-
 	/* Get player one's deck count after playing Adventurer. */
 	int deck_after = G.deckCount[whoseTurn];
 	printf("Deck count after playing Adventurer: %d\n", deck_after);
@@ -119,6 +137,18 @@ int main(int argc, char** argv) {
 	int discard_pile_after = G.playedCardCount;
 	printf("Player 1's discard pile after playing Adventurer: %d\n", G.playedCardCount);
 
+	printf("Cards in Player 1's deck after playing Adventurer:\n");
+	for (i = 0; i < G.deckCount[whoseTurn]; i++) {	// If == 4
+		if (G.deck[whoseTurn][i] == copper) {
+			printf("Card #%d: Copper\n", (i + 1));	// Copper
+		}
+		if (G.deck[whoseTurn][i] == silver) {	// If == 5
+			printf("Card #%d: Silver\n", (i + 1));	// Silver
+		}
+		if (G.deck[whoseTurn][i] == gold) {	// If == 6
+			printf("Card #%d: Gold\n", (i + 1));	// Gold
+		}
+	}
 
 	//int copperCount = 0;
 	//int silverCount = 0;
