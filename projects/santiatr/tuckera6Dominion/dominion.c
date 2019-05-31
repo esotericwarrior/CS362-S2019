@@ -754,13 +754,13 @@ int remodelCard(struct gameState *state, int currentPlayer, int choice1, int cho
 int smithyCard(int currentPlayer, struct gameState* state, int handPos){
 	int i;
 	//3+ cards
-	for (i = 1; i < 3; i++)	//added bug
+	for (i = 0; i < 3; i++)	//added bug
         {
         	drawCard(currentPlayer, state);
         }
 
 	//discard card
-      	//discardCard(handPos, currentPlayer, state, 0); //added bug
+      	discardCard(handPos, currentPlayer, state, 0); //added bug
       	return 0;
 
 }
