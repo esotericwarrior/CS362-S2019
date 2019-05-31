@@ -659,7 +659,7 @@ int adventurerCard(int* drawntreasure, struct gameState *state, int* cardDrawn, 
         	}
         	drawCard(currentPlayer, state);
         	*cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        	if (*cardDrawn == copper || *cardDrawn == silver || *cardDrawn != gold){ //added bug
+        	if (*cardDrawn == copper || *cardDrawn == silver || *cardDrawn == gold){ //fixed bug
         		*drawntreasure = *drawntreasure + 1;
 		}
 		else{
@@ -699,7 +699,7 @@ int councilRoomCard(int currentPlayer, struct gameState *state, int handPos){
         	if ( i != currentPlayer )
             	{
               		drawCard(i, state);
-			i++;	//added bug
+			//i++;	//fixed bug
             	}
         }
 	
@@ -754,13 +754,13 @@ int remodelCard(struct gameState *state, int currentPlayer, int choice1, int cho
 int smithyCard(int currentPlayer, struct gameState* state, int handPos){
 	int i;
 	//3+ cards
-	for (i = 0; i < 3; i++)	//added bug
+	for (i = 0; i < 3; i++)	//fixed bug
         {
         	drawCard(currentPlayer, state);
         }
 
 	//discard card
-      	discardCard(handPos, currentPlayer, state, 0); //added bug
+      	discardCard(handPos, currentPlayer, state, 0); //fixed bug
       	return 0;
 
 }
