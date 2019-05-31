@@ -17,7 +17,7 @@
 int main(int argc, char** argv) {
 	int seed = 1000;
 	int numPlayer = 2;	// Number of players.
-	int numTests = 20000;	// Number of tests to run.
+	int numTests = 1000;	// Number of tests to run.
 	int totalPassedTest = 0; // Variable used to track number of successful tests.
 	int i, returnedResult, handPos, handSize, deckSize;
 	int deck_before, hand_before, deck_after, hand_after, discard_pile_before, discard_pile_after;
@@ -88,7 +88,8 @@ int main(int argc, char** argv) {
 		/* Since the cardEffect function returns 0 when it's successful, we assign the returned number to a variable.*/
 		//returnedResult = cardEffect(smithy, choice1, choice2, choice3, &G, NULL);
 		printf("Playing Council Room...\n");
-		returnedResult = cardEffect(council_room, 1, 1, 1, &G, handPos, 0);	// Play Council Room card.
+		//returnedResult = cardEffect(council_room, 1, 1, 1, &G, handPos, 0);	// Play Council Room card. (Original function)
+		returnedResult = councilRoomCard(0, &G, handPos);	// Alexis' refactored Council Room function.
 
 		int buys_after = G.numBuys;
 		printf("Player 1's number of buys after playing Council Room: %d\n", buys_after);
@@ -144,15 +145,19 @@ int main(int argc, char** argv) {
 			passedTest = 0;
 		}
 
-		if (buys_after == buys_before + 1) {
+		//if (buys_after == buys_before + 1) {
+		if (buys_after != buys_before + 1) {
 			printf("Incorrect number of buys assigned.\n");
-			//failed_buy_test++;
-			success_buy_test++;
+			failed_buy_test++;
+			//success_buy_test++;
 			//passedTest = 1;
+			passedTest = 0;
 		}
 		else {
-			failed_buy_test++;
-			passedTest = 0;
+			//failed_buy_test++;
+			success_buy_test++;
+			//passedTest = 0;
+			passedTest = 1;
 		}
 
 		/* If all tests are passed, increment number of passed tests. */
